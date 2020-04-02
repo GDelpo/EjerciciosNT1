@@ -3,6 +3,22 @@
 
 <head>
     <title>CSS Transitions</title>
+    <style>
+        .clase-transicion{
+            height: 300px;
+            width: 300px;
+            border-radius: 100%;
+            background-color: red;
+            padding: 3.125rem;
+            margin: 3.125rem;
+        }
+
+        .clase-transicion:hover{
+            transition: border-radius 0.5s, background 0.5s;
+            background-color: green;
+            border-radius: 10%;
+        }
+    </style>
 </head>
 
 <body>

@@ -3,6 +3,22 @@
 
 <head>
     <title>Estilo a la primer letra y primera l&iacute;nea</title>
+    <style>
+        p{
+            font-size: 17px;
+            
+        }
+        
+        p::first-letter {
+            font-size: 2.5rem;
+            color: rgb(76, 109, 156);
+            font-weight: bold;
+        }
+
+        p::first-line {
+            color: rgb(90, 197, 237);
+        }
+    </style>
 </head>
 
 <body>
@@ -15,12 +31,12 @@
             href="https://developer.mozilla.org/es/docs/Web/CSS/::first-letter">first-letter</a> y <a
             href="https://developer.mozilla.org/es/docs/Web/CSS/::first-line">first-line</a>
     </div>
-    
-    <div>
+
+    <div style="border: 1px solid black;">
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ratione aliquid distinctio aliquam cumque
-            aut error, accusantium officia alias modi officiis rem exercitationem! Libero nihil, fugit veritatis
-            incidunt optio aliquam?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ratione <br> aliquid distinctio aliquam cumque
+            aut error, accusantium officia alias modi <br>officiis rem exercitationem! Libero nihil, fugit veritatis
+            incidunt optio <br>aliquam?
         </p>
     </div>
 </body>
