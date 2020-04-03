@@ -2,17 +2,18 @@
 <html lang="es">
 
 <head>
-    <meta charset=utf-8 />
+    <meta charset="utf-8" />
     <title>js ejercicio 2</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 </head>
 
 <body>
     <main class="container">
         <p>
-            Crear una función de javascript que permita automáticamente agregar filas a la siguiente tabla respetando el
-            formato del contenido de cada celda, siendo éste "celda {númeroDeFila,númeroDeColumna}".
+            Crear una función de javascript que permita automáticamente agregar
+            filas a la siguiente tabla respetando el formato del contenido de cada
+            celda, siendo éste "celda {númeroDeFila,númeroDeColumna}".
         </p>
         <button onclick="AgregarFila()" class="btn btn-sm btn-primary">
             Agregar fila!
@@ -29,30 +30,27 @@
                 <td>celda {2,1}</td>
                 <td>celda {2,2}</td>
             </tr>
-        </table><br>
+        </table>
+
+        <br />
     </main>
     <script type="text/javascript">
-
         function AgregarFila() {
 
+            var tablaAeditar = document.getElementById("tabla");
+            var cantFilasInicial = tablaAeditar.rows.length;
 
+            var nuevoTr = tablaAeditar.insertRow(cantFilasInicial);
+            var nuevoTd = nuevoTr.insertCell(0);
+            var nuevoTd2 = nuevoTr.insertCell(1);
 
-            var elemento = document.getElementById('tabla');
-            var tr = document.createElement("tr");
-            var td = document.createElement("td");
-            var td2 = document.createElement("td");
+            var cantFilasFinal = tablaAeditar.rows.length;
+            var numCell = (nuevoTd.cellIndex + 1);
 
-            td.innerText = "Celda {" + 
-            td2.innerText = 
-
-
-            elemento.append(tr)
-            tr.appendChild(td)
-            tr.appendChild(td2)
-
+            nuevoTd.innerHTML = "Celda{" + cantFilasFinal + "," + numCell + "}";
+            nuevoTd2.innerHTML = "Celda{" + cantFilasFinal + "," + (numCell + 1) + "}";
 
         }
-
     </script>
 </body>
 

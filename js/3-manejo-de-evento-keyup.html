@@ -4,7 +4,8 @@
 <head>
     <meta charset=utf-8 />
     <title>js ejercicio 3</title>
-    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -16,13 +17,37 @@
         poner en el span de abajo en rojo "no coincide"
     </div>
 
-    <div>
+    <div style="margin: 3.125rem; padding: 3.125rem;">
         <div class="form-group">
-            <span id="spanAComparar">eSt0 p0dr1A s3R uN cAptchA</span>
-            <input type="text" class="form-control" id="inputTexto" placeholder="ingresar el texto de arriba">
+            <span id="spanAComparar">hola</span>
+            <input onkeyup="compararTexto()" type="text" class="form-control" id="inputTexto"
+                placeholder="ingresar el texto de arriba">
             <span id="spanResultado" class="form-text"></span>
         </div>
     </div>
+    <script type="text/javascript">
+
+        function compararTexto() {
+            var captchaOriginal = document.getElementById(spanAComparar).innerText;
+            var captchaUsuario = document.getElementById(inputTexto).value;
+            var resultado = (captchaOriginal == captchaUsuario);
+            var pieResult = document.getElementById(spanResultado);
+
+            if (resultado) {
+               
+                    pieResult.innerText = "Lo conseguiste";
+                     }
+                
+
+            } else {
+                pieResult.innerText = "No lo conseguiste";
+                
+            }
+
+
+        }
+
+    </script>
 </body>
 
 </html>
