@@ -28,19 +28,21 @@
     <script type="text/javascript">
 
         function compararTexto() {
-            var captchaOriginal = document.getElementById(spanAComparar).innerText;
-            var captchaUsuario = document.getElementById(inputTexto).value;
-            var resultado = (captchaOriginal == captchaUsuario);
-            var pieResult = document.getElementById(spanResultado);
 
-            if (resultado) {
+            var captchaOriginal = document.getElementById(spanAComparar).innerText;
+            var captchaUsuario = document.getElementById(inputTexto).innerText;
+            var resultado = strcmp(captchaOriginal,captchaUsuario);
+            //var pieResult = document.getElementById(spanResultado);
+
+            if (resultado == 1) {
                
-                    pieResult.innerText = "Lo conseguiste";
+                    alert("Yes")
                      }
                 
 
             } else {
-                pieResult.innerText = "No lo conseguiste";
+                
+                alert("Yes")
                 
             }
 
