@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
 </head>
 
 <body>
@@ -15,11 +16,11 @@
         cuando se desmarque que se desmarquen todos los de las demas filas
     </div>
 
-    <div class="table-responsive">
-        <table>
+    <div class="table-responsive" style="padding: 3.75rem;">
+        <table  class="table table-striped table-bordered text-center">
             <thead>
-                <tr>
-                    <th><input type="checkbox" /> Marcar todos</th>
+                <tr class="text-uppercase">
+                    <th><input onclick="marcarTodo(this);" type="checkbox" /> Marcar todos</th>
                     <th>Nombre</th>
                     <th>Edad</th>
                 </tr>
@@ -43,6 +44,17 @@
             </tbody>
         </table>
     </div>
+    <script>
+
+        function marcarTodo(source) {
+            var todosLosCheckbox = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < todosLosCheckbox.length; i++) {
+                if (todosLosCheckbox[i] != source)
+                    todosLosCheckbox[i].checked = source.checked;
+            }
+        }
+
+    </script>
 </body>
 
 </html>

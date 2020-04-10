@@ -6,13 +6,14 @@
     <title>js ejercicio 4</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 </head>
 
 <body>
     <div class="alert alert-info">
         <ol>
-            <li>Teniendo en cuenta dónde posicionar el javascript a utilizar, hacer que luego de la carga del DOM se haga lo siguiente
+            <li>Teniendo en cuenta dónde posicionar el javascript a utilizar, hacer que luego de la carga del DOM se
+                haga lo siguiente
                 <ul>
                     <li>
                         Modificar el texto del párrafo dentro del div con id "unDiv" por "UN TEXTO DIFERENTE".
@@ -39,9 +40,42 @@
         <p>texto</p>
     </div>
 
-    <button id="unBoton">
+    <button id="unBoton" onclick="cambiarTexto()">
         Botón
     </button>
+    <script>
+
+        var unDivQueCambia = document.getElementById("unDiv");
+
+        var nuevoDiv = document.createElement("div");
+        
+        var nuevoDiv2 = document.createElement("div");
+
+        nuevoDiv.innerHTML = "<p> Texto arriba</p>";
+
+        unDivQueCambia.append(nuevoDiv);
+
+        nuevoDiv2.innerHTML = "<p> Texto abajo</p>";
+
+        document.body.append(nuevoDiv2);
+
+
+
+
+        function cambiarTexto() {
+
+            var resultadoPregunta = confirm('Estas seguro qué quiere cambiar el ' + unDivQueCambia.innerText + 'por "UN TEXTO DIFERENTE"?');
+
+            if (resultadoPregunta) {
+
+                unDivQueCambia.innerHTML = "UN TEXTO DIFERENTE"
+
+            }
+        }
+
+
+
+    </script>
 </body>
 
 </html>
