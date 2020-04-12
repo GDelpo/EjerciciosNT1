@@ -7,7 +7,14 @@
     <title>js ejercicio 6</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <style>
+        .col-md-6,
+        .col-md-12 {
+            padding: 30px;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -20,7 +27,7 @@
         La operación de depósito debe dejar un asiento en la columna monto que indique el monto positivo y con
         color verde (puede utilizar la clase de bootstrap text-success).
         <br />
-        En cualquiera de los casos anteriores debe actualizar el balance total y el banlance parcial indicando el monto 
+        En cualquiera de los casos anteriores debe actualizar el balance total y el banlance parcial indicando el monto
         disponible en la Cta. Cte.
     </div>
 
@@ -32,9 +39,9 @@
             Balance Total: <span>$55,00</span>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped table-bordered">
+            <table id="tabla" class="table table-striped table-bordered text-center">
                 <thead>
-                    <tr>
+                    <tr class="text-uppercase">
                         <th>Fecha de movimiento</th>
                         <th>Monto</th>
                         <th>Balance parcial</th>
@@ -54,7 +61,140 @@
                 </tbody>
             </table>
         </div>
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-12"">
+                     <input type=" number" min="1" max="10" class="form-control text-center"
+                    placeholder="Ingresar Monto">
+                </div>
+                <div class="col-md-6 divcenter text-center">
+                    <button onclick="depositar()" type="button" class="btn btn-outline-success btn-lg btn-block">
+                        DEPOSITAR
+                    </button>
+                </div>
+                <div class="col-md-6 divcenter text-center">
+                    <button onclick="extraer()" type="button" class="btn btn-outline-danger btn-lg btn-block">
+                        EXTRAER
+                    </button>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <script>
+
+        //Variables Globales a utilizar 
+        var balanceTomado = parseFloat(document.getElementsByTagName('span')[0].innerText.slice(1));
+
+        var balanceCrudo = document.getElementsByTagName('span')[0];
+
+        var montoParaAsignar = document.querySelector('input');
+
+
+        //Esto deberia hacer el movimiento final combinando las otras funciones
+
+        function movimiento(tipoMovimiento, monto, clase) {
+
+            switch (tipoMovimiento) {
+                case "depositar":
+                    balanceTomado = (balanceTomado + monto)
+                    break;
+                case "extraer":
+
+                    balanceTomado = (balanceTomado - monto)
+
+                    monto = "-" + monto;
+
+                    break;
+
+                default:
+                    break;
+            }
+
+
+            agregarFila(monto, clase)
+
+            balanceCrudo.innerText = "$" + balanceTomado + ",00";
+
+        }
+
+        //Esto deberia depositar manda el monto y ademas la clase correspondiente
+
+        function depositar() {
+
+            var monto = montoParaAsignar.value;
+
+            if (monto > 0) {
+
+                movimiento("depositar", parseFloat(monto), "text-success")
+            } else {
+                alert("Estas ingresando un valor menor a 0")
+            }
+
+        }
+
+        function extraer() {
+
+            var monto = montoParaAsignar.value;
+
+            if (monto > 0) {
+
+                if (monto <= balanceTomado) {
+                    movimiento("extraer", parseFloat(monto), "text-danger")
+                } else {
+                    alert("No tenes fondos suficientes para extraer este monto")
+                }
+
+
+            } else {
+                alert("Estas ingresando un valor menor a 0")
+            }
+        }
+
+        //Esto me crea la fecha de HOY y me la devuelve en el formato que quiero
+
+        function Fecha() {
+
+            var fecha = new Date();
+
+            var dia = fecha.getUTCDate();
+            var mes = (fecha.getUTCMonth() + 1);
+            var anio = fecha.getUTCFullYear();
+
+            if (mes < 10) {
+                mes = '0' + mes;
+            }
+
+            var fechaTotal = dia + "/" + mes + "/" + anio;
+
+            return fechaTotal;
+
+        }
+
+        //Esto me crea la nueva fila con las 3 columnas, le tengo que pasar la fecha, el monto ya desglozado si es negativo o positivo. Y e; balance. Todo masticado
+
+        function agregarFila(monto, clase) {
+
+            var tablaAeditar = document.getElementById("tabla");
+            var cantFilasInicial = tablaAeditar.rows.length;
+
+            var nuevoTr = tablaAeditar.insertRow(cantFilasInicial);
+            var nuevoTd = nuevoTr.insertCell(0);
+            var nuevoTd2 = nuevoTr.insertCell(1);
+            var nuevoTd3 = nuevoTr.insertCell(2);
+
+            nuevoTd.innerHTML = Fecha();
+
+            nuevoTd2.classList.toggle(clase)
+
+            nuevoTd2.innerHTML = "$" + monto + ",00"
+
+            nuevoTd3.innerHTML = "$" + (balanceTomado) + ",00"
+        }
+
+
+
+    </script>
 </body>
 
 </html>
